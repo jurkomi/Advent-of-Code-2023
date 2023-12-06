@@ -19,3 +19,20 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+/**
+ * Multiply all values in an [Iterable] of [Int]s.
+ */
+fun Iterable<Int>.multiply(): Int {
+    var multiplication = 1
+    for (element in this) {
+        multiplication *= element
+    }
+    return multiplication
+}
+
+/**
+ * Converts all the digits in the text to [Long] value. Returns 0 in case no digits are present.
+ */
+fun String.getAllDigitsAsLong(): Long =
+    filter { it.isDigit() }.let { if (it.isEmpty()) 0 else it.toLong() }
