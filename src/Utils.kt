@@ -36,3 +36,17 @@ fun Iterable<Int>.multiply(): Int {
  */
 fun String.getAllDigitsAsLong(): Long =
     filter { it.isDigit() }.let { if (it.isEmpty()) 0 else it.toLong() }
+
+/**
+ * Finds a least common multiple for the given list of [Long] values.
+ */
+fun List<Long>.findLCM(): Long {
+    val largest = max()
+    val maxLcm = fold(1L) { acc, i -> acc * i }
+    var lcm = largest
+    while (lcm <= maxLcm) {
+        if (all { lcm % it == 0L }) return lcm
+        lcm += largest
+    }
+    return maxLcm
+}
